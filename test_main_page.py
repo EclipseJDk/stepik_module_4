@@ -1,3 +1,5 @@
+from .pages.locators import LoginPageLocators
+from .pages.login_page import LoginPage
 from .pages.main_page import MainPage
 
 
@@ -15,7 +17,19 @@ def test_guest_should_see_login_link(browser):
     page.should_be_login_link()
 
 
+def test_should_be_login_url(browser):
+    page = LoginPage(browser, LoginPageLocators.LOGIN_URL)
+    page.open()
+    page.should_be_login_url()
 
-    # browser.get(link)
-    # login_link = browser.find_element(By.CSS_SELECTOR, "#login_link")
-    # login_link.click()
+
+def test_login_form_present(browser):
+    page = LoginPage(browser, LoginPageLocators.LOGIN_URL)
+    page.open()
+    page.should_be_login_form()
+
+
+def test_register_form_present(browser):
+    page = LoginPage(browser, LoginPageLocators.LOGIN_URL)
+    page.open()
+    page.should_be_register_form()
